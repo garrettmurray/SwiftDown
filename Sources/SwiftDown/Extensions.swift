@@ -7,7 +7,7 @@
 
 import Foundation
 
-#if os(iOS)
+#if os(iOS) || os(visionOS)
   import struct UIKit.CGFloat
 #elseif os(macOS)
   import struct AppKit.CGFloat
@@ -93,7 +93,7 @@ extension UniversalFont {
   }
 
   private func getTraits(from traits: TraitConfigProperty) -> UniversalTraits? {
-    #if os(iOS)
+    #if os(iOS) || os(visionOS)
       switch traits {
       case .italic: return .traitItalic
       case .bold: return .traitBold

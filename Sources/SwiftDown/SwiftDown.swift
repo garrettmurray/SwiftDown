@@ -5,7 +5,7 @@
 //  Created by Quentin Eude on 16/03/2021.
 //
 
-#if os(iOS)
+#if os(iOS) || os(visionOS)
   import UIKit
 
   // MARK: - SwiftDown iOS
@@ -20,9 +20,11 @@
       self.backgroundColor = theme.backgroundColor
       self.tintColor = theme.tintColor
       self.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+      #if os(iOS)
       if hasKeyboardToolbar {
         self.addKeyboardToolbar()
       }
+      #endif
     }
 
     override init(frame: CGRect, textContainer: NSTextContainer?) {

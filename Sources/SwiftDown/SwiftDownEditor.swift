@@ -9,7 +9,7 @@ import Down
 import SwiftUI
 import Combine
 
-#if os(iOS)
+#if os(iOS) || os(visionOS)
   // MARK: - SwiftDownEditor iOS
 public struct SwiftDownEditor: UIViewRepresentable {
   private var debounceTime = 0.3

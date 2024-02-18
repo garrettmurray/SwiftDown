@@ -5,7 +5,7 @@
 //  Created by Quentin Eude on 28/12/2022.
 //
 
-#if os(iOS)
+#if os(iOS) || os(visionOS)
 import UIKit
 
 class SwiftDownHighlighter {
