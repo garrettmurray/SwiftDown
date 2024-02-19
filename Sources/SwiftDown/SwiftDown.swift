@@ -12,7 +12,7 @@
   public class SwiftDown: UITextView, UITextViewDelegate {
     var storage: Storage = Storage()
     var highlighter: SwiftDownHighlighter?
-    var hasKeyboardToolbar: Bool = true
+    var hasKeyboardToolbar: Bool = false
 
     convenience init(frame: CGRect, theme: Theme) {
       self.init(frame: frame, textContainer: nil)

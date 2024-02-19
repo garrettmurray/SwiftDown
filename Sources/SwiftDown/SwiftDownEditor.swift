@@ -25,7 +25,7 @@ public struct SwiftDownEditor: UIViewRepresentable {
     private(set) var autocapitalizationType: UITextAutocapitalizationType = .sentences
     private(set) var autocorrectionType: UITextAutocorrectionType = .default
     private(set) var keyboardType: UIKeyboardType = .default
-    private(set) var hasKeyboardToolbar: Bool = true
+    private(set) var hasKeyboardToolbar: Bool = false
     private(set) var textAlignment: TextAlignment = .leading
 
     public var onTextChange: (String) -> Void = { _ in }
