@@ -20,7 +20,7 @@
       self.backgroundColor = theme.backgroundColor
       self.tintColor = theme.tintColor
       self.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-      #if os(iOS)
+      #if !os(visionOS)
       if hasKeyboardToolbar {
         self.addKeyboardToolbar()
       }
