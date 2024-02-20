@@ -162,6 +162,10 @@
       textView.backgroundColor = theme.backgroundColor
       textView.insertionPointColor = theme.cursorColor
       textView.textColor = theme.tintColor
+      textView.linkTextAttributes = [
+          .foregroundColor: NSColor.blue,
+          .underlineStyle: NSUnderlineStyle.single.rawValue
+      ]
       return textView
     }()
 
