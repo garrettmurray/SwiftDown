@@ -13,6 +13,7 @@
     var storage: Storage = Storage()
     var highlighter: SwiftDownHighlighter?
     var hasKeyboardToolbar: Bool = false
+    var autodetectLinks: Bool = false
 
     convenience init(frame: CGRect, theme: Theme) {
       self.init(frame: frame, textContainer: nil)
@@ -20,6 +21,7 @@
       self.backgroundColor = theme.backgroundColor
       self.tintColor = theme.tintColor
       self.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+      self.dataDetectorTypes = autodetectLinks ? [.link] : []
       #if !os(visionOS)
       if hasKeyboardToolbar {
         self.addKeyboardToolbar()
@@ -94,6 +96,7 @@
     var theme: Theme
     private var isEditable: Bool
     private var insetsSize: CGFloat
+    private var autodetectLinks: Bool
 
     weak var delegate: NSTextViewDelegate? {
       didSet {
@@ -155,6 +158,7 @@
       textView.textContainerInset = NSSize(width: self.insetsSize, height: self.insetsSize)
       textView.allowsUndo = true
       textView.allowsDocumentBackgroundColorChange = true
+      textView.isAutomaticLinkDetectionEnabled = autodetectLinks
       textView.backgroundColor = theme.backgroundColor
       textView.insertionPointColor = theme.cursorColor
       textView.textColor = theme.tintColor
@@ -162,12 +166,13 @@
     }()
 
     init(
-      theme: Theme, isEditable: Bool, insetsSize: CGFloat = 0
+      theme: Theme, isEditable: Bool, insetsSize: CGFloat = 0, autodetectLinks: Bool
     ) {
       self.isEditable = isEditable
       self.text = ""
       self.theme = theme
       self.insetsSize = insetsSize
+      self.autodetectLinks = autodetectLinks
 
       super.init(frame: .zero)
     }

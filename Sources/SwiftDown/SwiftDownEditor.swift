@@ -27,6 +27,7 @@ public struct SwiftDownEditor: UIViewRepresentable {
     private(set) var keyboardType: UIKeyboardType = .default
     private(set) var hasKeyboardToolbar: Bool = false
     private(set) var textAlignment: TextAlignment = .leading
+    private(set) var autodetectLinks: Bool = false
 
     public var onTextChange: (String) -> Void = { _ in }
     public var onSelectionChange: (NSRange) -> Void = { _ in }
@@ -54,6 +55,7 @@ public struct SwiftDownEditor: UIViewRepresentable {
       swiftDown.hasKeyboardToolbar = hasKeyboardToolbar
       swiftDown.autocapitalizationType = autocapitalizationType
       swiftDown.autocorrectionType = autocorrectionType
+      swiftDown.dataDetectorTypes = autodetectLinks ? [.link] : []
       swiftDown.textContainerInset = UIEdgeInsets(
         top: insetsSize, left: insetsSize, bottom: insetsSize, right: insetsSize)
       swiftDown.backgroundColor = theme.backgroundColor
@@ -153,6 +155,7 @@ public struct SwiftDownEditor: UIViewRepresentable {
     private(set) var isEditable: Bool = true
     private(set) var theme: Theme = Theme.BuiltIn.defaultDark.theme()
     private(set) var insetsSize: CGFloat = 0
+    private(set) var autodetectLinks: Bool = false
 
     public var onTextChange: (String) -> Void = { _ in }
     public var onSelectionChange: (NSRange) -> Void = { _ in }
@@ -168,7 +171,7 @@ public struct SwiftDownEditor: UIViewRepresentable {
     }
 
     public func makeNSView(context: Context) -> SwiftDown {
-      let swiftDown = SwiftDown(theme: theme, isEditable: isEditable, insetsSize: insetsSize)
+      let swiftDown = SwiftDown(theme: theme, isEditable: isEditable, insetsSize: insetsSize, autodetectLinks: autodetectLinks)
       swiftDown.delegate = context.coordinator
       swiftDown.setupTextView()
       swiftDown.text = text
@@ -239,6 +242,12 @@ extension SwiftDownEditor {
   public func isEditable(_ isEditable: Bool) -> Self {
     var editor = self
     editor.isEditable = isEditable
+    return editor
+  }
+
+  public func autodetectLinks(_ autodetectLinks: Bool) -> Self {
+    var editor = self
+    editor.autodetectLinks = autodetectLinks
     return editor
   }
 
