@@ -158,12 +158,7 @@
       textView.textContainerInset = NSSize(width: self.insetsSize, height: self.insetsSize)
       textView.allowsUndo = true
       textView.allowsDocumentBackgroundColorChange = true
-      textView.isSelectable = true
-      textView.isAutomaticLinkDetectionEnabled = false
-      textView.isAutomaticLinkDetectionEnabled = true
-      textView.linkTextAttributes = [
-        .foregroundColor: NSColor.blue
-      ]
+      textView.isAutomaticLinkDetectionEnabled = autodetectLinks
       textView.backgroundColor = theme.backgroundColor
       textView.insertionPointColor = theme.cursorColor
       textView.textColor = theme.tintColor
