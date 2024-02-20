@@ -159,6 +159,9 @@
       textView.allowsUndo = true
       textView.allowsDocumentBackgroundColorChange = true
       textView.isAutomaticLinkDetectionEnabled = true
+      textView.linkTextAttributes = [
+        .foregroundColor: NSColor.blue
+      ]
       textView.backgroundColor = theme.backgroundColor
       textView.insertionPointColor = theme.cursorColor
       textView.textColor = theme.tintColor
