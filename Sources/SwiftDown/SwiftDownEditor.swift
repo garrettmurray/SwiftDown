@@ -45,6 +45,7 @@ public struct SwiftDownEditor: UIViewRepresentable {
 
     public func makeUIView(context: Context) -> SwiftDown {
       let swiftDown = SwiftDown(frame: .zero, theme: theme)
+      swiftDown.dataDetectorTypes = autodetectLinks ? [.link] : []
       swiftDown.storage.markdowner = { self.engine.render($0, offset: $1) }
       swiftDown.storage.applyMarkdown = { m in Theme.applyMarkdown(markdown: m, with: self.theme) }
       swiftDown.storage.applyBody = { Theme.applyBody(with: self.theme) }
@@ -55,7 +56,6 @@ public struct SwiftDownEditor: UIViewRepresentable {
       swiftDown.hasKeyboardToolbar = hasKeyboardToolbar
       swiftDown.autocapitalizationType = autocapitalizationType
       swiftDown.autocorrectionType = autocorrectionType
-      swiftDown.dataDetectorTypes = autodetectLinks ? [.link] : []
       swiftDown.textContainerInset = UIEdgeInsets(
         top: insetsSize, left: insetsSize, bottom: insetsSize, right: insetsSize)
       swiftDown.backgroundColor = theme.backgroundColor
